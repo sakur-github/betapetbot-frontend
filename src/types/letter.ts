@@ -1,7 +1,7 @@
 type letter = {
   letter?: string;
   multiplier: number;
-  multiplyWord: false;
+  multiplyWord: boolean;
   type: number;
   x: number;
   y: number;

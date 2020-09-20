@@ -3,6 +3,8 @@ import styled from "styled-components/macro";
 
 import squares from "types/squares";
 
+import defaultSquares from "./defaultSquares";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,20 +70,22 @@ const LetterMultiplier = styled.div`
 const Board = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [games, setGames] = useState();
-  const [activeSquares, setActiveSquares] = useState<squares | undefined>();
+  const [activeSquares, setActiveSquares] = useState<squares>(defaultSquares);
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     fetch("https://betapetbot.herokuapp.com/game")
       .then((response) => response.json())
       .then((data) => {
         setGames(data.games);
         setActiveSquares(data.games[0].board.squares);
+        setLoaded(true);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, []);
 
-  if (!activeSquares) {
+  if (!loaded) {
     return (
       <Container>
         <h1 style={{ margin: "auto" }}>Loading...</h1>
@@ -91,7 +95,7 @@ const Board = () => {
 
   return (
     <Container>
-      {activeSquares &&
+      {loaded &&
         activeSquares.map((row) => (
           <Row key={`rowkey: x: ${row[0].x}, y:${row[0].y}`}>
             {row.map((letter) => {
