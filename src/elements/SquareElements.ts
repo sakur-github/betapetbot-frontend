@@ -15,7 +15,7 @@ const SquareBase = styled.div`
   border-radius: 0.2rem;
 `;
 
-const squareElements = {
+const SquareElements = {
   WhiteSquare: styled(SquareBase)`
     background-color: #faf7f5;
     color: black;
@@ -37,6 +37,10 @@ const squareElements = {
   EmptySquare: styled(SquareBase)`
     background-color: #e4dac3;
   `,
+  StartSquare: styled(SquareBase)`
+    background-color: #2f308d;
+    font-size: 0.8rem;
+  `,
   LetterMultiplier: styled.div`
     position: absolute;
     font-weight: 400;
@@ -48,4 +52,4 @@ const squareElements = {
   `,
 };
 
-export default squareElements;
+export default SquareElements;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import squareElements from "elements/squareElements";
+import SquareElements from "elements/SquareElements";
 
 import Game from "types/Game";
 
@@ -162,14 +162,14 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
           <AvailableLettersContainer>
             {activeGame.board.playerState.hand &&
               activeGame.board.playerState.hand.map((letter, index) => (
-                <squareElements.WhiteSquare
+                <SquareElements.WhiteSquare
                   key={`menu-whitesquarekey-${letter.stringValue}-${letter.scoreValue}-${index}`}
                 >
                   <p>{letter.stringValue}</p>
-                  <squareElements.LetterMultiplier>
+                  <SquareElements.LetterMultiplier>
                     {letter.scoreValue}
-                  </squareElements.LetterMultiplier>
-                </squareElements.WhiteSquare>
+                  </SquareElements.LetterMultiplier>
+                </SquareElements.WhiteSquare>
               ))}
           </AvailableLettersContainer>
           <>

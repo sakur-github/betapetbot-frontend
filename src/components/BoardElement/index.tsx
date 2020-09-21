@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
-import squareElements from "elements/squareElements";
+import SquareElements from "elements/SquareElements";
 import LoadingSpinner from "components/LoadingSpinner";
 
 import Game from "types/Game";
@@ -54,39 +54,45 @@ const BoardElement = ({ games, activeGame, loading }: BoardProps) => {
               switch (square.type) {
                 case 0:
                   return (
-                    <squareElements.WhiteSquare key={key}>
+                    <SquareElements.WhiteSquare key={key}>
                       <p>{square.letter?.stringValue}</p>
-                      <squareElements.LetterMultiplier>
+                      <SquareElements.LetterMultiplier>
                         {square.letter?.scoreValue}
-                      </squareElements.LetterMultiplier>
-                    </squareElements.WhiteSquare>
+                      </SquareElements.LetterMultiplier>
+                    </SquareElements.WhiteSquare>
                   );
                 case 1:
                   return (
-                    <squareElements.YellowSquare key={key}>
+                    <SquareElements.YellowSquare key={key}>
                       <p>2x ord</p>
-                    </squareElements.YellowSquare>
+                    </SquareElements.YellowSquare>
                   );
                 case 2:
                   return (
-                    <squareElements.RedSquare key={key}>
+                    <SquareElements.RedSquare key={key}>
                       <p>3x ord</p>
-                    </squareElements.RedSquare>
+                    </SquareElements.RedSquare>
                   );
                 case 3:
                   return (
-                    <squareElements.BeigeSquare key={key}>
+                    <SquareElements.BeigeSquare key={key}>
                       <p>2x bok</p>
-                    </squareElements.BeigeSquare>
+                    </SquareElements.BeigeSquare>
                   );
                 case 4:
                   return (
-                    <squareElements.GreySquare key={key}>
+                    <SquareElements.GreySquare key={key}>
                       <p>3x bok</p>
-                    </squareElements.GreySquare>
+                    </SquareElements.GreySquare>
+                  );
+                case 6:
+                  return (
+                    <SquareElements.StartSquare key={key}>
+                      <p>START</p>
+                    </SquareElements.StartSquare>
                   );
                 default:
-                  return <squareElements.EmptySquare key={key} />;
+                  return <SquareElements.EmptySquare key={key} />;
               }
             })}
           </Row>
