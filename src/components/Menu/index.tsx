@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swipeable } from "react-swipeable";
 import styled from "styled-components/macro";
 
@@ -123,10 +123,27 @@ interface MenuProps {
 
 const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const menuRef = useRef<HTMLHeadingElement | null>(null);
 
   const activeGameIndex = games.indexOf(activeGame);
   const canClickPrevious = activeGameIndex !== 0;
   const canClickNext = activeGameIndex !== games.length - 1;
+
+  const handleZoom: EventListener = () => {
+    if (menuRef.current) {
+      menuRef.current.style["transform"] =
+        "scale(" +
+        window.innerWidth / document.documentElement.clientWidth +
+        ")";
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleZoom);
+    return () => {
+      window.removeEventListener("scroll", handleZoom);
+    };
+  }, []);
 
   const previousGame = () => {
     if (canClickPrevious) {
@@ -146,7 +163,7 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
 
   return (
     <>
-      <Wrapper expanded={menuExpanded}>
+      <Wrapper expanded={menuExpanded} ref={menuRef}>
         <Container
           onSwipedUp={() => setMenuExpanded(true)}
           onSwipedDown={() => setMenuExpanded(false)}
