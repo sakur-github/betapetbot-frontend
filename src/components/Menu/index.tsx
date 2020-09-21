@@ -135,6 +135,11 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
         "scale(" +
         window.innerWidth / document.documentElement.clientWidth +
         ")";
+      menuRef.current.style.left = window.pageXOffset + "px";
+      menuRef.current.style.bottom =
+        document.documentElement.clientHeight -
+        (window.pageYOffset + window.innerHeight) +
+        "px";
     }
   };
 
