@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import squareElements from "styled/squareElements";
-import Letter from "types/Letter";
+import squareElements from "elements/squareElements";
+
+import Game from "types/Game";
 
 const Wrapper = styled.div<MenuInteractiveProps>`
   display: flex;
@@ -105,45 +106,29 @@ interface MenuInteractiveProps {
   readonly expanded: boolean;
 }
 
-const PLAYERS: string[] = [
-  "oliverlevay",
-  "adamtovatt",
-  "oskarstahl",
-  "lalosaleh",
-  "rebeccafrom",
-  "sagaberneryd",
-  "sarahtovatt",
-  "williamlevay",
-  "martinlarsson",
-  "gunnarahl",
-];
+interface MenuProps {
+  games: Game[],
+  activeGame: Game,
+  setActiveGame: React.Dispatch<React.SetStateAction<Game>>,
+  loading: boolean,
+};
 
-const AVAILABLE_LETTERS: Letter[] = [
-  { letter: "F", multiplier: 1 },
-  { letter: "U", multiplier: 2 },
-  { letter: "C", multiplier: 3 },
-  { letter: "K", multiplier: 4 },
-  { letter: "Y", multiplier: 5 },
-  { letter: "O", multiplier: 6 },
-  { letter: "U", multiplier: 7 },
-];
-
-const Menu = () => {
-  const [activeGame, setActiveGame] = useState(0);
+const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
 
-  const canClickPrevious = activeGame !== 0;
-  const canClickNext = activeGame !== PLAYERS.length - 1;
+  const activeGameIndex = games.indexOf(activeGame);
+  const canClickPrevious = activeGameIndex !== 0;
+  const canClickNext = activeGameIndex !== games.length - 1;
 
   const previousGame = () => {
     if (canClickPrevious) {
-      setActiveGame(activeGame - 1);
+      setActiveGame(games[activeGameIndex - 1]);
     }
   };
 
   const nextGame = () => {
     if (canClickNext) {
-      setActiveGame(activeGame + 1);
+      setActiveGame(games[activeGameIndex + 1]);
     }
   };
 
@@ -163,20 +148,21 @@ const Menu = () => {
               onClick={() => previousGame()}
             />
             <p>
-              Game {activeGame + 1}{" "}
-              <span style={{ fontSize: 18 }}>vs {PLAYERS[activeGame]}</span>{" "}
+              Game {activeGameIndex + 1}{" "}
+              <span style={{ fontSize: 18 }}>vs {activeGame.opponent.handle}</span>{" "}
             </p>
             <TriangleRight canClick={canClickNext} onClick={() => nextGame()} />
           </ControlsContainer>
           <AvailableLettersContainer>
-            {AVAILABLE_LETTERS.map((letter) => (
-              <squareElements.WhiteSquare>
-                <p>{letter.letter}</p>
-                <squareElements.LetterMultiplier>
-                  {letter.multiplier}
-                </squareElements.LetterMultiplier>
-              </squareElements.WhiteSquare>
-            ))}
+            {activeGame.board.playerState.hand &&
+              activeGame.board.playerState.hand.map((letter, index) => (
+                <squareElements.WhiteSquare key={`menu-whitesquarekey-${letter.stringValue}-${letter.scoreValue}-${index}`}>
+                  <p>{letter.stringValue}</p>
+                  <squareElements.LetterMultiplier>
+                    {letter.scoreValue}
+                  </squareElements.LetterMultiplier>
+                </squareElements.WhiteSquare>
+              ))}
           </AvailableLettersContainer>
           <>
             <h1>Information</h1>

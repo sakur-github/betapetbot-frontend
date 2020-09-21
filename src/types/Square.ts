@@ -1,7 +1,7 @@
 import Letter from "./Letter";
 
-type Square = Letter & {
-  letter?: string;
+type Square = {
+  letter?: Letter;
   multiplier: number;
   multiplyWord: boolean;
   type: number;

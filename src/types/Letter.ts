@@ -1,6 +1,6 @@
 type Letter = {
-  letter?: string;
-  multiplier: number;
+  stringValue: string;
+  scoreValue: number;
 };
 
 export default Letter;

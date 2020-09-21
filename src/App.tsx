@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 
-import Board from "components/Board";
-import Menu from "components/Menu";
 import { TABLET_MQ } from "constants/mediaQueries";
+
+import BoardElement from "components/BoardElement";
+import Menu from "components/Menu";
+import defaultGames from "components/BoardElement/defaultGames";
+
+import Game from "types/Game";
+import validateResponse from "types/Response.validator"
+import Response from "types/Response";
+
+const FETCH_URL = "https://betapetbot.herokuapp.com/game";
 
 const MainContainer = styled.div`
   display: flex;
@@ -20,11 +28,29 @@ const Layout = styled.div`
 `;
 
 const App = () => {
+  const [games, setGames] = useState<Game[]>(defaultGames);
+  const [activeGame, setActiveGame] = useState<Game>(defaultGames[0]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(FETCH_URL)
+      .then((response) => response.json())
+      .then((data: Response) => {
+        validateResponse(data);
+        setGames(data.games);
+        setActiveGame(data.games[0]);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <MainContainer>
       <Layout>
-        <Menu />
-        <Board />
+        <Menu games={games} activeGame={activeGame} setActiveGame={setActiveGame} loading={loading} />
+        <BoardElement games={games} activeGame={activeGame} loading={loading} />
       </Layout>
     </MainContainer>
   );
