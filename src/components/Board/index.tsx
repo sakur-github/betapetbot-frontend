@@ -8,7 +8,6 @@ import defaultSquares from "./defaultSquares";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #7c7462;
   min-width: 47.25rem;
   min-height: 47.25rem;
 `;

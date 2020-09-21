@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 
 import Board from "components/Board";
 import Menu from "components/Menu";
+import { TABLET_MQ } from "constants/mediaQueries";
 
 const MainContainer = styled.div`
   display: flex;
@@ -11,7 +12,9 @@ const MainContainer = styled.div`
 `;
 
 const Layout = styled.div`
-  margin: auto;
+  ${TABLET_MQ} {
+    margin: auto;
+  }
   display: flex;
   width: fit-content;
 `;
