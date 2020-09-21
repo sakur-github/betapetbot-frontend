@@ -20,6 +20,8 @@ const Wrapper = styled.div<MenuInteractiveProps>`
 `;
 
 const Container = styled(Swipeable)`
+  position: relative;
+  max-width: 40rem;
   display: flex;
   flex-direction: column;
   background-color: #a3977c;
@@ -145,16 +147,16 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
   return (
     <>
       <Wrapper expanded={menuExpanded}>
-        <ExpandButton
-          expanded={menuExpanded}
-          onClick={() => setMenuExpanded(!menuExpanded)}
-        >
-          <CutDiamond />
-        </ExpandButton>
         <Container
           onSwipedUp={() => setMenuExpanded(true)}
           onSwipedDown={() => setMenuExpanded(false)}
         >
+          <ExpandButton
+            expanded={menuExpanded}
+            onClick={() => setMenuExpanded(!menuExpanded)}
+          >
+            <CutDiamond />
+          </ExpandButton>
           <ControlsContainer>
             <TriangleLeft
               canClick={canClickPrevious}
@@ -183,14 +185,10 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
           </AvailableLettersContainer>
           <>
             <h1>Information</h1>
+            <p>Score: {activeGame.board.playerState.score}</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {activeGame.opponent.handle}'s score:{" "}
+              {activeGame.board.playerState.score}
             </p>
           </>
         </Container>
