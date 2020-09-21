@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 
 import squareElements from "styled/squareElements";
+import Letter from "types/Letter";
 
 const Wrapper = styled.div<MenuInteractiveProps>`
   display: flex;
@@ -105,7 +106,15 @@ interface MenuInteractiveProps {
 
 const AMOUNT_OF_GAMES: number = 10;
 
-const AVAILABLE_LETTERS: string[] = ["F", "U", "C", "K", "Y", "O", "U"];
+const AVAILABLE_LETTERS: Letter[] = [
+  { letter: "F", multiplier: 1 },
+  { letter: "U", multiplier: 2 },
+  { letter: "C", multiplier: 3 },
+  { letter: "K", multiplier: 4 },
+  { letter: "Y", multiplier: 5 },
+  { letter: "O", multiplier: 6 },
+  { letter: "U", multiplier: 7 },
+];
 
 const Menu = () => {
   const [activeGame, setActiveGame] = useState(0);
@@ -147,7 +156,10 @@ const Menu = () => {
           <AvailableLettersContainer>
             {AVAILABLE_LETTERS.map((letter) => (
               <squareElements.WhiteSquare>
-                <p>{letter}</p>
+                <p>{letter.letter}</p>
+                <squareElements.LetterMultiplier>
+                  {letter.multiplier}
+                </squareElements.LetterMultiplier>
               </squareElements.WhiteSquare>
             ))}
           </AvailableLettersContainer>

@@ -1,4 +1,6 @@
-type letter = {
+import Letter from "./Letter";
+
+type Square = Letter & {
   letter?: string;
   multiplier: number;
   multiplyWord: boolean;
@@ -7,4 +9,4 @@ type letter = {
   y: number;
 };
 
-export default letter;
+export default Square;

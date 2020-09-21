@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components/macro";
 
-import squares from "types/squares";
+import Squares from "types/Squares";
 import squareElements from "styled/squareElements";
 
 import defaultSquares from "./defaultSquares";
@@ -18,20 +18,10 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
-const LetterMultiplier = styled.div`
-  position: absolute;
-  font-weight: 400;
-  font-size: 0.75rem;
-  bottom: 0;
-  right: 0;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
-`;
-
 const Board = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [games, setGames] = useState();
-  const [activeSquares, setActiveSquares] = useState<squares>(defaultSquares);
+  const [activeSquares, setActiveSquares] = useState<Squares>(defaultSquares);
   const [loaded, setLoaded] = useState(false);
   const loadingRef = useRef<HTMLHeadingElement | null>(null);
   useEffect(() => {
@@ -71,7 +61,9 @@ const Board = () => {
                   return (
                     <squareElements.WhiteSquare key={key}>
                       <p>{letter.letter}</p>
-                      <LetterMultiplier>1</LetterMultiplier>
+                      <squareElements.LetterMultiplier>
+                        1
+                      </squareElements.LetterMultiplier>
                     </squareElements.WhiteSquare>
                   );
                 case 1:

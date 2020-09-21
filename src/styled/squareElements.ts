@@ -37,6 +37,15 @@ const squareElements = {
   EmptySquare: styled(SquareBase)`
     background-color: #e4dac3;
   `,
+  LetterMultiplier: styled.div`
+    position: absolute;
+    font-weight: 400;
+    font-size: 0.75rem;
+    bottom: 0;
+    right: 0;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+  `,
 };
 
 export default squareElements;

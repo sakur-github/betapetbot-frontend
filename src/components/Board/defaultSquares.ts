@@ -1,6 +1,6 @@
-import squares from "types/squares";
+import Squares from "types/Squares";
 
-const defaultBoard: squares = [
+const defaultBoard: Squares = [
   [
     {
       type: 4,
