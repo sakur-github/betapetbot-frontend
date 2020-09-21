@@ -13,7 +13,7 @@ const Wrapper = styled.div<MenuInteractiveProps>`
   width: 100%;
   height: ${({ expanded }) => (expanded ? "90%" : "7.5rem")};
   z-index: 1;
-  transition: height 1s ease;
+  transition: height 0.5s ease;
 `;
 
 const Container = styled.div`
@@ -86,10 +86,11 @@ const CutDiamond = styled.div`
 `;
 
 const ExpandButton = styled.div<MenuInteractiveProps>`
-  position: absolute;
+  z-index: 3;
+  position: fixed;
   right: -1rem;
-  top: -2.5rem;
-  transition: transform 0.8s ease;
+  bottom: 4rem;
+  transition: transform 0.4s ease;
   ${({ expanded }) =>
     expanded
       ? "transform: scale(0.4) rotate(0deg);"
@@ -104,7 +105,18 @@ interface MenuInteractiveProps {
   readonly expanded: boolean;
 }
 
-const AMOUNT_OF_GAMES: number = 10;
+const PLAYERS: string[] = [
+  "oliverlevay",
+  "adamtovatt",
+  "oskarstahl",
+  "lalosaleh",
+  "rebeccafrom",
+  "sagaberneryd",
+  "sarahtovatt",
+  "williamlevay",
+  "martinlarsson",
+  "gunnarahl",
+];
 
 const AVAILABLE_LETTERS: Letter[] = [
   { letter: "F", multiplier: 1 },
@@ -121,7 +133,7 @@ const Menu = () => {
   const [menuExpanded, setMenuExpanded] = useState(false);
 
   const canClickPrevious = activeGame !== 0;
-  const canClickNext = activeGame !== AMOUNT_OF_GAMES - 1;
+  const canClickNext = activeGame !== PLAYERS.length - 1;
 
   const previousGame = () => {
     if (canClickPrevious) {
@@ -150,7 +162,10 @@ const Menu = () => {
               canClick={canClickPrevious}
               onClick={() => previousGame()}
             />
-            <p>Game {activeGame + 1}</p>
+            <p>
+              Game {activeGame + 1}{" "}
+              <span style={{ fontSize: 18 }}>vs {PLAYERS[activeGame]}</span>{" "}
+            </p>
             <TriangleRight canClick={canClickNext} onClick={() => nextGame()} />
           </ControlsContainer>
           <AvailableLettersContainer>
