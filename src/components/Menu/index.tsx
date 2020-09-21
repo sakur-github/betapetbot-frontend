@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
+import { TABLET_MQ } from "constants/mediaQueries";
 
 const Container = styled.div`
-  padding: 1rem 0;
-  width: 20rem;
-  border-style: solid;
-  background-color: #e4dac3;
+  display: none;
+  ${TABLET_MQ} {
+    display: block;
+    padding: 1rem 0;
+    width: 20rem;
+    border-style: solid;
+    background-color: #e4dac3;
+  }
 `;
 
 interface MenuItemProps {

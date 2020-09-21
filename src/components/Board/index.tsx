@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components/macro";
 
 import squares from "types/squares";
@@ -72,6 +72,7 @@ const Board = () => {
   const [games, setGames] = useState();
   const [activeSquares, setActiveSquares] = useState<squares>(defaultSquares);
   const [loaded, setLoaded] = useState(false);
+  const loadingRef = useRef<HTMLHeadingElement | null>(null);
   useEffect(() => {
     fetch("https://betapetbot.herokuapp.com/game")
       .then((response) => response.json())
@@ -83,12 +84,15 @@ const Board = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    loadingRef.current?.scrollIntoView({ block: "center", inline: "center" });
   }, []);
 
   if (!loaded) {
     return (
       <Container>
-        <h1 style={{ margin: "auto" }}>Loading...</h1>
+        <h1 ref={loadingRef} style={{ margin: "auto" }}>
+          Loading...
+        </h1>
       </Container>
     );
   }
