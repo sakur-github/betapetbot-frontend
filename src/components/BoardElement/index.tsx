@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
 import squareElements from "elements/squareElements";
+import LoadingSpinner from "components/LoadingSpinner";
 
 import Game from "types/Game";
 
@@ -17,11 +18,15 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
+const LoadingContainer = styled.div`
+  margin: auto;
+`;
+
 interface BoardProps {
-  games: Game[],
-  activeGame: Game,
-  loading: boolean,
-};
+  games: Game[];
+  activeGame: Game;
+  loading: boolean;
+}
 
 const BoardElement = ({ games, activeGame, loading }: BoardProps) => {
   const loadingRef = useRef<HTMLHeadingElement | null>(null);
@@ -32,9 +37,9 @@ const BoardElement = ({ games, activeGame, loading }: BoardProps) => {
   if (loading) {
     return (
       <Container>
-        <h1 ref={loadingRef} style={{ margin: "auto" }}>
-          Loading...
-        </h1>
+        <LoadingContainer ref={loadingRef} style={{ margin: "auto" }}>
+          <LoadingSpinner />
+        </LoadingContainer>
       </Container>
     );
   }

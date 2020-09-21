@@ -107,11 +107,11 @@ interface MenuInteractiveProps {
 }
 
 interface MenuProps {
-  games: Game[],
-  activeGame: Game,
-  setActiveGame: React.Dispatch<React.SetStateAction<Game>>,
-  loading: boolean,
-};
+  games: Game[];
+  activeGame: Game;
+  setActiveGame: React.Dispatch<React.SetStateAction<Game>>;
+  loading: boolean;
+}
 
 const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
   const [menuExpanded, setMenuExpanded] = useState(false);
@@ -132,6 +132,10 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
     }
   };
 
+  if (loading) {
+    return null;
+  }
+
   return (
     <>
       <Wrapper expanded={menuExpanded}>
@@ -149,14 +153,18 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
             />
             <p>
               Game {activeGameIndex + 1}{" "}
-              <span style={{ fontSize: 18 }}>vs {activeGame.opponent.handle}</span>{" "}
+              <span style={{ fontSize: 18 }}>
+                vs {activeGame.opponent.handle}
+              </span>{" "}
             </p>
             <TriangleRight canClick={canClickNext} onClick={() => nextGame()} />
           </ControlsContainer>
           <AvailableLettersContainer>
             {activeGame.board.playerState.hand &&
               activeGame.board.playerState.hand.map((letter, index) => (
-                <squareElements.WhiteSquare key={`menu-whitesquarekey-${letter.stringValue}-${letter.scoreValue}-${index}`}>
+                <squareElements.WhiteSquare
+                  key={`menu-whitesquarekey-${letter.stringValue}-${letter.scoreValue}-${index}`}
+                >
                   <p>{letter.stringValue}</p>
                   <squareElements.LetterMultiplier>
                     {letter.scoreValue}

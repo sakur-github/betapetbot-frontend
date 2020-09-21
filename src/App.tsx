@@ -8,7 +8,7 @@ import Menu from "components/Menu";
 import defaultGames from "components/BoardElement/defaultGames";
 
 import Game from "types/Game";
-import validateResponse from "types/Response.validator"
+import validateResponse from "types/Response.validator";
 import Response from "types/Response";
 
 const FETCH_URL = "https://betapetbot.herokuapp.com/game";
@@ -49,7 +49,12 @@ const App = () => {
   return (
     <MainContainer>
       <Layout>
-        <Menu games={games} activeGame={activeGame} setActiveGame={setActiveGame} loading={loading} />
+        <Menu
+          games={games}
+          activeGame={activeGame}
+          setActiveGame={setActiveGame}
+          loading={loading}
+        />
         <BoardElement games={games} activeGame={activeGame} loading={loading} />
       </Layout>
     </MainContainer>
