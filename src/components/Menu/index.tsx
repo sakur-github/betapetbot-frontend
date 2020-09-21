@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Swipeable } from "react-swipeable";
 import styled from "styled-components/macro";
 
 import SquareElements from "elements/SquareElements";
 
 import Game from "types/Game";
+import { TABLET_MQ } from "constants/mediaQueries";
 
 const Wrapper = styled.div<MenuInteractiveProps>`
   display: flex;
@@ -17,7 +19,7 @@ const Wrapper = styled.div<MenuInteractiveProps>`
   transition: height 0.5s ease;
 `;
 
-const Container = styled.div`
+const Container = styled(Swipeable)`
   display: flex;
   flex-direction: column;
   background-color: #a3977c;
@@ -87,15 +89,19 @@ const CutDiamond = styled.div`
 `;
 
 const ExpandButton = styled.div<MenuInteractiveProps>`
-  z-index: 3;
-  position: fixed;
-  right: -1rem;
-  bottom: 4rem;
-  transition: transform 0.4s ease;
-  ${({ expanded }) =>
-    expanded
-      ? "transform: scale(0.4) rotate(0deg);"
-      : "transform: scale(0.4) rotate(180deg);"};
+  display: none;
+  ${TABLET_MQ} {
+    display: block;
+    z-index: 3;
+    position: absolute;
+    right: -1rem;
+    top: -2.5rem;
+    transition: transform 0.4s ease;
+    ${({ expanded }) =>
+      expanded
+        ? "transform: scale(0.4) rotate(0deg);"
+        : "transform: scale(0.4) rotate(180deg);"};
+  }
 `;
 
 interface TriangleProps {
@@ -145,7 +151,10 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
         >
           <CutDiamond />
         </ExpandButton>
-        <Container>
+        <Container
+          onSwipedUp={() => setMenuExpanded(true)}
+          onSwipedDown={() => setMenuExpanded(false)}
+        >
           <ControlsContainer>
             <TriangleLeft
               canClick={canClickPrevious}
