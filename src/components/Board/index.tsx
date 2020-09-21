@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components/macro";
 
 import squares from "types/squares";
+import squareElements from "styled/squareElements";
 
 import defaultSquares from "./defaultSquares";
 
@@ -15,45 +16,6 @@ const Container = styled.div`
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const DefaultSquare = styled.div`
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: 600;
-  font-size: 1.25rem;
-  width: 3rem;
-  height: 3rem;
-  margin-right: 0.15rem;
-  margin-bottom: 0.15rem;
-  background-color: #e4dac3;
-  border-radius: 0.2rem;
-`;
-
-const WhiteSquare = styled(DefaultSquare)`
-  background-color: #faf7f5;
-  color: black;
-  font-size: 1.5rem;
-  position: relative;
-`;
-
-const YellowSquare = styled(DefaultSquare)`
-  background-color: #e5b91d;
-`;
-
-const RedSquare = styled(DefaultSquare)`
-  background-color: #e73a2f;
-`;
-
-const BeigeSquare = styled(DefaultSquare)`
-  background-color: #b1a87a;
-`;
-
-const GreySquare = styled(DefaultSquare)`
-  background-color: #b0b0b0;
 `;
 
 const LetterMultiplier = styled.div`
@@ -82,6 +44,7 @@ const Board = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
+        setActiveSquares(defaultSquares);
       });
     loadingRef.current?.scrollIntoView({ block: "center", inline: "center" });
   }, []);
@@ -106,37 +69,37 @@ const Board = () => {
               switch (letter.type) {
                 case 0:
                   return (
-                    <WhiteSquare key={key}>
+                    <squareElements.WhiteSquare key={key}>
                       <p>{letter.letter}</p>
                       <LetterMultiplier>1</LetterMultiplier>
-                    </WhiteSquare>
+                    </squareElements.WhiteSquare>
                   );
                 case 1:
                   return (
-                    <YellowSquare key={key}>
+                    <squareElements.YellowSquare key={key}>
                       <p>2x ord</p>
-                    </YellowSquare>
+                    </squareElements.YellowSquare>
                   );
                 case 2:
                   return (
-                    <RedSquare key={key}>
+                    <squareElements.RedSquare key={key}>
                       <p>3x ord</p>
-                    </RedSquare>
+                    </squareElements.RedSquare>
                   );
                 case 3:
                   return (
-                    <BeigeSquare key={key}>
+                    <squareElements.BeigeSquare key={key}>
                       <p>2x bok</p>
-                    </BeigeSquare>
+                    </squareElements.BeigeSquare>
                   );
                 case 4:
                   return (
-                    <GreySquare key={key}>
+                    <squareElements.GreySquare key={key}>
                       <p>3x bok</p>
-                    </GreySquare>
+                    </squareElements.GreySquare>
                   );
                 default:
-                  return <DefaultSquare key={key} />;
+                  return <squareElements.EmptySquare key={key} />;
               }
             })}
           </Row>

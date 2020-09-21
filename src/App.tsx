@@ -16,6 +16,7 @@ const Layout = styled.div`
   }
   display: flex;
   width: fit-content;
+  padding-bottom: 7.5rem;
 `;
 
 const App = () => {
