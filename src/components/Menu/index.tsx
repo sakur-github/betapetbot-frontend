@@ -37,6 +37,7 @@ const ControlsContainer = styled.div`
   text-align: center;
   font-size: 2rem;
   padding: 0.5rem 0;
+  min-height: fit-content;
 `;
 
 const AvailableLettersContainer = styled.div`
@@ -45,6 +46,7 @@ const AvailableLettersContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   padding: 0.5rem 0;
+  min-height: fit-content;
 `;
 
 const TRIANGLE_WIDTH = 24;
