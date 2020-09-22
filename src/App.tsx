@@ -8,8 +8,8 @@ import Menu from "components/Menu";
 import defaultGames from "components/BoardElement/defaultGames";
 
 import Game from "shared/types/Game";
-import validateResponse from "shared/types/Response.validator";
 import Response from "shared/types/Response";
+import validateResponse from "validators/Response.validator";
 
 const FETCH_URL = "https://betapetbot.herokuapp.com/game";
 
