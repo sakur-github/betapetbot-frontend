@@ -1,4 +1,4 @@
-import Game from "types/Game";
+import Game from "shared/types/Game";
 
 const defaultGames: Game[] = [
   {

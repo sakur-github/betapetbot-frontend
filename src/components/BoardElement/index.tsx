@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import SquareElements from "elements/SquareElements";
 import LoadingSpinner from "components/LoadingSpinner";
 
-import Game from "types/Game";
+import Game from "shared/types/Game";
 
 const Container = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 
 import SquareElements from "elements/SquareElements";
 
-import Game from "types/Game";
+import Game from "shared/types/Game";
 import { TABLET_MQ } from "constants/mediaQueries";
 
 const Wrapper = styled.div<MenuInteractiveProps>`

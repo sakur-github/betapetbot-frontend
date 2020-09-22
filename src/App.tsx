@@ -7,9 +7,9 @@ import BoardElement from "components/BoardElement";
 import Menu from "components/Menu";
 import defaultGames from "components/BoardElement/defaultGames";
 
-import Game from "types/Game";
-import validateResponse from "types/Response.validator";
-import Response from "types/Response";
+import Game from "shared/types/Game";
+import validateResponse from "shared/types/Response.validator";
+import Response from "shared/types/Response";
 
 const FETCH_URL = "https://betapetbot.herokuapp.com/game";
 
