@@ -1,5 +1,15 @@
 # Frontend to betapetbot.
 
+This repo includes a (submodule)[https://github.com/sakur-github/betapetbot-shared] with shared code between frontend and backend.
+
+# Pull all changes in the repo including changes in the submodules
+
+git pull --recurse-submodules
+
+# Pull all changes for the submodules
+
+git submodule update --remote
+
 Find the code for the backend [here](https://github.com/AdamTovatt/betapetbot)
 
 This project was created from a simple typescript & styled components boilerplate you can find [here](https://github.com/oliverlevay/create-react-app-ts-sc)
