@@ -1,14 +1,14 @@
-# Frontend to betapetbot.
-
 This repo includes a (submodule)[https://github.com/sakur-github/betapetbot-shared] with shared code between frontend and backend.
 
-# Pull all changes in the repo including changes in the submodules
+Clone the repo with submodules
 
-git pull --recurse-submodules
+### `git clone https://github.com/sakur-github/betapetbot-frontend.git --recurse-submodules`
 
-# Pull all changes for the submodules
+Update the submodule
 
-git submodule update --remote --merge
+### `git submodule update --remote --merge`
+
+# Frontend to betapetbot.
 
 Find the code for the backend [here](https://github.com/AdamTovatt/betapetbot)
 
