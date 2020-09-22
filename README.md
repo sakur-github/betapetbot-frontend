@@ -10,10 +10,6 @@ git pull --recurse-submodules
 
 git submodule update --remote --merge
 
-# Update all submodules
-
-git submodule foreach git pull origin master
-
 Find the code for the backend [here](https://github.com/AdamTovatt/betapetbot)
 
 This project was created from a simple typescript & styled components boilerplate you can find [here](https://github.com/oliverlevay/create-react-app-ts-sc)

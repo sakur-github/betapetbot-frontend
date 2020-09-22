@@ -1,3 +1,4 @@
 [submodule "src/shared"]
+	branch = master
 	path = src/shared
 	url = https://github.com/sakur-github/betapetbot-shared.git
