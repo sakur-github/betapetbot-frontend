@@ -1,6 +1,6 @@
 # Frontend to betapetbot.
 
-This repo includes a (submodule)[https://github.com/sakur-github/betapetbot-shared] with shared code between frontend and backend.
+This repo includes a [submodule](https://github.com/sakur-github/betapetbot-shared] with shared code between frontend and backend.)
 
 # Pull all changes in the repo including changes in the submodules
 
