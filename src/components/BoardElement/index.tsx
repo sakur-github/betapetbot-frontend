@@ -44,6 +44,8 @@ const BoardElement = ({ games, activeGame, loading }: BoardProps) => {
     );
   }
 
+  if (!games.length) return (null);
+
   return (
     <Container>
       {!loading &&

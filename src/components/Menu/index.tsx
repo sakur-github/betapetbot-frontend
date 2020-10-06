@@ -164,7 +164,7 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
     }
   };
 
-  if (loading) {
+  if (loading || !games.length) {
     return null;
   }
 
