@@ -209,10 +209,10 @@ const Menu = ({ games, activeGame, setActiveGame, loading }: MenuProps) => {
           </AvailableLettersContainer>
           <>
             <h1>Information</h1>
-            <p>Score: {activeGame.board.playerState.score}</p>
+            <p>My Score: {activeGame.board.playerState.score}</p>
             <p>
-              {activeGame.opponent.handle}'s score:{" "}
-              {activeGame.board.playerState.score}
+              Their {activeGame.opponent.handle ? `(${activeGame.opponent.handle})` : ''} score:{" "}
+              {activeGame.board.opponentState.score}
             </p>
           </>
         </Container>

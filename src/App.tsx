@@ -11,7 +11,7 @@ import Game from "shared/types/Game";
 import Response from "shared/types/Response";
 import validateResponse from "validators/Response.validator";
 
-const FETCH_URL = "https://betapetbot.herokuapp.com/game";
+const FETCH_URL = "http://localhost:5000/bot/botStatus?username=davidrdrgz&password=gunnaral";
 
 const MainContainer = styled.div`
   display: flex;
@@ -45,7 +45,6 @@ const App = () => {
     fetch(FETCH_URL)
       .then((response) => response.json())
       .then((data: Response) => {
-        validateResponse(data);
         setGames(data.games);
         setActiveGame(data.games[0]);
         setLoading(false);
